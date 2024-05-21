@@ -3,25 +3,9 @@
 
 
 import pandas as pd 
-import numpy as np 
-import streamlit as st 
-import seaborn as sns 
-import matplotlib.pyplot as plt
-import plotly.express as px
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.neighbors import KNeighborsClassifier
-import joblib
-from sklearn.metrics import r2_score
-from sklearn.metrics import accuracy_score
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.decomposition import PCA
 
-import streamlit as st
-import pandas as pd
+import streamlit as st 
+
 
 
 st.set_page_config(
@@ -134,11 +118,11 @@ elif page == pages[1]:
     
     tab1.write("")
     tab1.write("##### Incidents.csv : 39 variables (1636512, 39) - 515,08 Mo.")
-    tab1.dataframe(df_inc, width = 1260, height = 260)
+    tab1.dataframe(df_inc, width = 1000, height = 260)
     
     tab1.write("")
     tab1.write("##### Mobilisation.csv : 21 variables (2885296, 22) - 525,62 Mo.")
-    tab1.dataframe(df_mob, width = 1260, height = 250)
+    tab1.dataframe(df_mob, width = 1000, height = 250)
     
     tab1.write("")
     tab1.write("##### Volume total : 1,02 Go.")
@@ -160,7 +144,7 @@ elif page == pages[1]:
     
     tab3.write("###### - Concaténation en un seul fichier csv, grâce à la variable “IncidentNumber”, qui nous servira d’index.")
     tab3.write("###### - 38 variables au final et 0% de valeurs manquantes")
-    tab3.dataframe(df_dist, width = 1260)
+    tab3.dataframe(df_dist, width = 1000)
     
 
   
@@ -177,14 +161,16 @@ elif page == pages[2]:
     tab4.write("#### Variables retenues :")
     tab4.write("###### - Variable cible : TravelTimeSeconds")
     tab4.write("###### - Variables numériques retenues : Year, Day, Distance, TurnoutTimeSeconds")
-    tab4.write("###### - Variables catégorielles retenues : Month, Weekday, IncidentGroup, SpecialServiceType, PropertyCategory, AdressQualifier, IncGeoBoroughName, IncidentStationGround, ")
-    tab4.write("###### FirstPumpArriving_DeployedFromStation, DelayCode_Description")
+    tab4.write("###### - Variables catégorielles retenues : Month, Weekday, IncidentGroup, SpecialServiceType, PropertyCategory, AdressQualifier, IncGeoBoroughName, ")
+    tab4.write("###### IncidentStationGround, FirstPumpArriving_DeployedFromStation, DelayCode_Description")
     
     tab4.write("")
     tab4.write("#### Création de dictionnaires :")
     tab4.write("###### - Création de dictionnaires permettant de regrouper les valeurs uniques de nos variables catégorielles en quelques valeurs seulement")
     tab4.write("###### - Nous obtenons les valeurs uniques suivantes :")
-    tab4.image("C:/Users/demoy-e/Desktop/FORMATION/Nouveau dossier/dictionnaires.png")
+    
+    col1, col2 = tab4.columns([0.65, 0.35])
+    col1.image("C:/Users/demoy-e/Desktop/FORMATION/Nouveau dossier/dictionnaires.png")
     tab4.write("")
     tab4.write("###### Pour information, voici la manière dont les zones géographiques ont été découpées :")
     tab4.image("C:/Users/demoy-e/Desktop/FORMATION/Nouveau dossier/carte londres.png")
@@ -207,7 +193,7 @@ elif page == pages[2]:
     tab5.write("")
     tab5.write("#### Dataframe final pour la modélisation :")
     maxMessageSize = 600
-    tab5.dataframe(df_preprocessed.head(10), width = 1260)
+    tab5.dataframe(df_preprocessed.head(10), width = 1000)
     
     tab6.write("## Précision du modèle : 0.761052235876854")
     
@@ -279,7 +265,7 @@ elif page == pages[3]:
             # Afficher le graphique avec les quartiles et les labels
             st.markdown(f"""
                 <div style="position: relative;">
-                    <div style="width: 1340px; height: 40px; border: 1px solid black; border-radius: 5px; position: relative;">
+                    <div style="width: 1000px; height: 40px; border: 1px solid black; border-radius: 5px; position: relative;">
                         <div style="height: 100%; width: {(filtered_mean_time - min_value) / (max_value - min_value) * 100}%; background-color: #007bff; border-radius: 5px;"></div>
                         <div style="position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between;">
                             <div style="position: absolute; left: 0; font-weight: bold; top: 20px;">Min</div>
@@ -301,31 +287,40 @@ elif page == pages[4]:
     tab1, tab2, tab3 = st.tabs(["Conclusion", "Limites et difficultés", "Ouverture"])
     tab1.write("#### Conclusion")
     tab1.write("###### L’objectif de ce projet était d’analyser et d'estimer les temps de réponse et de mobilisation de la Brigade des Pompiers de Londres suite à un incident.")
-    tab1.write("###### Pour cela, nous avions à disposition deux principaux jeux de données provenant du site data.london.gov.uk et référençant l’ensemble des incidents et des mobilisations de 2009 à 2023.") 
+    tab1.write("###### Pour cela, nous avions à disposition deux principaux jeux de données provenant du site data.london.gov.uk et référençant l’ensemble des incidents et des ") 
+    tab1.write("###### mobilisations de 2009 à 2023.")
     tab1.write("")
-    tab1.write("###### Nous sommes en mesure aujourd’hui de conclure que l’objectif global du projet à été atteint. En effet, après une analyse poussée de nos jeux de donnée, nous avons réussi à créer un modèle de") 
-    tab1.write("###### Machine Learning performant, affichant un score de précision de 75%. Comme il a été démontré, ce modèle se rapproche considérablement de la réalité, bien qu'il reste une marge d'amélioration de 25%.")
     tab1.write("")
-    tab1.write("###### Malgré l'influence de certaines variables externes sur nos données, nous sommes d'avis que notre modèle pourrait bénéficier d'améliorations grâce à des informations plus précises sur :")
+    tab1.write("")
+    tab1.write("###### Nous sommes en mesure aujourd’hui de conclure que l’objectif global du projet à été atteint. En effet, après une analyse poussée de nos jeux de donnée, ") 
+    tab1.write("###### nous avons réussi à créer un modèle de Machine Learning performant, affichant un score de précision de 75%. Comme il a été démontré, ce modèle se rapproche ")
+    tab1.write("###### considérablement de la réalité, bien qu'il reste une marge d'amélioration de 25%.")
+    tab1.write("")
+    tab1.write("")
+    tab1.write("")
+    tab1.write("###### Malgré l'influence de certaines variables externes sur nos données, nous sommes d'avis que notre modèle pourrait bénéficier d'améliorations grâce à des ")
+    tab1.write("###### informations plus précises sur :")
     tab1.write("###### - La configuration urbaine et le trafic routier (la facilité d'accès ou l'obstacle rencontré pour atteindre le lieu de l'incident)")
     tab1.write("###### - La répartition démographique")
 
     tab2.write("#### Limites")
     tab2.write("###### Nos principales limites se trouvent dans notre modèle de Machine Learning (RandomForestRegressor).")
-    tab2.write("###### En effet, en examinant les scores pour chaque classe individuelle, nous pouvons voir des variations. Par exemple, la classe 3 obtient les meilleurs résultats avec une précision de 0,80, un rappel de ")
-    tab2.write("###### 0,83 et un F1-score de 0,82, indiquant que le modèle est particulièrement performant dans la classification de cette classe. Dans l’autre sens, la classe 1 obtient des résultats moins performants, avec ")
-    tab2.write("###### une précision de 0,74, mais un rappel de seulement 0,66 et un F1-score de 0,70.")
-    tab2.write("###### En conclusion, bien que ce modèle de classification ait des performances globalement bonnes, il y a toujours des domaines où des améliorations pourraient être apportées, en particulier pour certaines ")
-    tab2.write("###### classes où la précision ou le rappel sont légèrement inférieurs.")
+    tab2.write("###### En effet, en examinant les scores pour chaque classe individuelle, nous pouvons voir des variations. Par exemple, la classe 3 obtient les meilleurs résultats")
+    tab2.write("###### avec une précision de 0,81, un rappel de  0,84 et un F1-score de 0,82, indiquant que le modèle est particulièrement performant dans la classification de cette classe.")
+    tab2.write("###### Dans l’autre sens, la classe 2 obtient des résultats moins performants, avec une précision de 0,75, mais un rappel de seulement 0,66 et un F1-score de 0,70.")
+    tab2.write("###### En conclusion, bien que ce modèle de classification ait des performances globalement bonnes, il y a toujours des domaines où des améliorations pourraient être")
+    tab2.write("###### apportées, en particulier pour certaines classes où la précision ou le rappel sont légèrement inférieurs.")
 
     tab2.write("")
     tab2.write("#### Difficultés")
     tab2.write("###### Nous avons rencontré certaines **difficultés** lors de la phase de **Machine Learning**.")
-    tab2.write("###### En effet, les ordinateurs de **Pascal** et **Nathalie** n’étaient pas suffisamment puissants pour exécuter les codes, qui ont donc été entièrement développé par **Eva** pour cette partie.")
+    tab2.write("###### En effet, les ordinateurs de **Pascal** et **Nathalie** n’étaient pas suffisamment puissants pour exécuter les codes, qui ont donc été entièrement développé par")
+    tab2.write("###### **Eva** pour cette partie.")
     
     
     tab3.write("#### Création d'application")
-    tab3.write("###### Ce projet s'est avéré très intéressant et pourrait être utilisé à l'avenir pour la conception d'applications destinées à deux publics distincts : les pompiers d'un côté, et les utilisateurs de l'autre.")
+    tab3.write("###### Ce projet s'est avéré très intéressant et pourrait être utilisé à l'avenir pour la conception d'applications destinées à deux publics distincts : ")
+    tab3.write("###### les pompiers d'un côté, et les utilisateurs de l'autre.")
     tab3.write("###### L'objectif serait de faciliter la transmission d'informations entre le moment du signalement de l'incident et l'arrivée des pompiers sur les lieux.")
     tab3.write("")
     col1, col2, col3 = tab3.columns(3)
