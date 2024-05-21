@@ -327,7 +327,7 @@ elif page == pages[4]:
     tab3.write("")
     col1, col2, col3 = tab3.columns(3)
     
-    col1.image("notif.webp")
+    col1.image("notif.jpeg")
     col2.write("")
     col2.write("")
     col2.write("")
