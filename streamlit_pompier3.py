@@ -18,19 +18,19 @@ st.set_page_config(
 @st.cache_data()
 def get_data_inc():
     return pd.read_csv(
-        'C:/Users/demoy*e/Desktop/FORMATION/Nouveau dossier/Incidents.csv',
+        'Incidents.csv',
          nrows=10)
 def get_data_mob():
     return pd.read_csv(
-        'C:/Users/demoy*e/Desktop/FORMATION/Nouveau dossier/Mobilisations.csv',
+        'Mobilisations.csv',
          nrows=10)
 def get_data_dist():
     return pd.read_csv(
-        'C:/Users/demoy*e/Desktop/FORMATION/Nouveau dossier/Dataframe_distance.csv',
+        'Dataframe_distance.csv',
          nrows=10)
 def get_data_preprocessed():
     return pd.read_csv(
-        "C:/Users/demoy*e/Desktop/FORMATION/Nouveau dossier/df_preprocessed.csv",
+        "df_preprocessed.csv",
         nrows=10000000)
 
 
@@ -61,9 +61,9 @@ def set_background(png_file):
     ''' % bin_str
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
-set_background("C:/Users/demoy*e/Desktop/FORMATION/Nouveau dossier/background.png")
+set_background("background.png")
 
-logo = 'C:/Users/demoy*e/Desktop/FORMATION/Nouveau dossier/pompier3.jpg'
+logo = 'pompier3.jpg'
 
 st.sidebar.image(logo, use_column_width=True)
 st.sidebar.write("Prediction du temps de réponse de la LFB:")
@@ -170,10 +170,10 @@ elif page == pages[2]:
     tab4.write(" * Nous obtenons les valeurs uniques suivantes :")
     
     col1, col2 = tab4.columns([0.65, 0.35])
-    col1.image("C:/Users/demoy*e/Desktop/FORMATION/Nouveau dossier/dictionnaires.png")
+    col1.image("dictionnaires.png")
     tab4.write("")
     tab4.write(" Pour information, voici la manière dont les zones géographiques ont été découpées :")
-    tab4.image("C:/Users/demoy*e/Desktop/FORMATION/Nouveau dossier/carte londres.png")
+    tab4.image("carte londres.png")
     
     tab5.write("#### Statistiques de la variable cible :")
     tab5.write(" * Valeur minimale de TravelTimeSeconds : 1.0")
@@ -199,11 +199,11 @@ elif page == pages[2]:
     
     tab6.write("")
     tab6.write("#### Matrice de corrélation :")
-    tab6.image("C:/Users/demoy*e/Desktop/FORMATION/Nouveau dossier/Matrice de corrélation.png")
+    tab6.image("Matrice de corrélation.png")
     
     tab6.write("")
     tab6.write("#### Rapport de classification :")
-    tab6.image("C:/Users/demoy*e/Desktop/FORMATION/Nouveau dossier/Rapport de classification.png")
+    tab6.image("Rapport de classification.png")
     
 
 elif page == pages[3]:
@@ -254,7 +254,7 @@ elif page == pages[3]:
             
             st.write("")
             st.write("##    Prédiction du modèle : Classe", classe)
-            st.image("C:/Users/demoy*e/Desktop/FORMATION/Nouveau dossier/classe.png")
+            st.image("classe.png")
             st.write("")
             st.write("## Temps de réponse moyen (secondes) :", filtered_df_preprocessed['TravelTimeSeconds'].mean())
             st.write("## Temps de réponse moyen (minutes) :", filtered_df_preprocessed['TravelTimeSeconds'].mean() / 60)
@@ -325,7 +325,7 @@ elif page == pages[4]:
     tab3.write("")
     col1, col2, col3 = tab3.columns(3)
     
-    col1.image("C:/Users/demoy*e/Desktop/FORMATION/Nouveau dossier/notif.webp")
+    col1.image("notif.webp")
     col2.write("")
     col2.write("")
     col2.write("")
