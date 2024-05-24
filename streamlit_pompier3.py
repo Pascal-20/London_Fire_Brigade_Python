@@ -31,6 +31,7 @@ def get_data_dist():
 def get_data_preprocessed():
     return pd.read_csv(
         "df_preprocessed.csv",
+        compression = "gzip",
         nrows=10000000)
 
 
