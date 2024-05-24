@@ -30,7 +30,7 @@ def get_data_dist():
          nrows=10)
 def get_data_preprocessed():
     return pd.read_csv(
-        "df_preprocessed_1.csv",
+        "df_preprocessed.csv",
         nrows=10000000)
 
 
