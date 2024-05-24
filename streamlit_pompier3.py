@@ -28,16 +28,17 @@ def get_data_dist():
     return pd.read_csv(
         'Dataframe_distance.csv',
          nrows=10)
-with open('df_preprocessed.csv', 'rb') as fd:
-    gzip_fd = gzip.GzipFile(fileobj=fd)
-    df_preprocessed = pd.read_csv(gzip_fd, nrows=10000000)
+def get_data_preprocessed():
+    return pd.read_csv(
+        'df_preprocessed.csv',
+         nrows=10000000)
 
 df_inc = get_data_inc()
 df_mob = get_data_mob()
 df_dist = get_data_dist()
 colonnes_a_supprimer = ["HourOfCall_x", "StopCodeDescription", "ProperCase", 'IncGeo_WardName', 'FRS', 'NumCalls', 'CalYear_y', 'HourOfCall_y', 'ResourceMobilisationId', 'Resource_Code', 'PerformanceReporting', 'DateAndTimeLeft', 'DeployedFromStation_Code', 'PumpOrder', 'PlusCode_Code', 'PlusCode_Description', "DateAndTimeMobilised",]
 df_dist = df_dist.drop(columns=colonnes_a_supprimer)
-
+df_preprocessed = get_data_preprocessed()
 
 
 st.cache(persist=True)
